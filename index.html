@@ -1,122 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Azaryel Flame: Light of the Chosen</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 1rem;
-      box-sizing: border-box;
-    }
-    .console-container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-    .console {
-      background: #111;
-      padding: 1.5rem;
-      border: 2px solid #444;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #8228ff66;
-    }
-    .subtitle {
-      font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 1rem;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      background: #222;
-      color: #0ff;
-      font-size: 1rem;
-      border: 1px solid #555;
-      padding: 1rem;
-      border-radius: 8px;
-      resize: none;
-      box-sizing: border-box;
-    }
-    .sigil {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-    .sigil img {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 0 8px #0ff);
-    }
-    .response {
-      margin-top: 1.5rem;
-      background: #1a1a1a;
-      padding: 1rem;
-      border-left: 4px solid #0ff;
-      border-radius: 8px;
-    }
-    .log {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: #0e0e0e;
-      border: 1px dashed #555;
-      max-height: 150px;
-      overflow-y: auto;
-      font-size: 0.9rem;
-      border-radius: 6px;
-    }
-  </style>
-</head>
-<body>
-  <main class="console-container">
-    <section class="console">
-      <h1>Azary’el Flame Console</h1>
-      <p class="subtitle">Enter your invocation or activation code below.</p>
-      <textarea id="console-input" placeholder="Type: activate_higher_self() or sigil.generate('Kai’thar')..."></textarea>
-      <div class="response" id="console-response">
-        Awaiting signal from the inner flame...
-      </div>
-      <div class="log" id="console-log">
-        <strong>Invocation Log:</strong>
-        <ul id="log-entries"></ul>
-      </div>
-    </section>
-    <div class="sigil">
-      <img src="sigil.png" alt="Chosen Sigil">
-    </div>
-    <audio id="audio-trigger" src="activation_chime.mp3" preload="auto"></audio>
-  </main>
-  <script>
-    const input = document.getElementById('console-input');
-    const response = document.getElementById('console-response');
-    const log = document.getElementById('log-entries');
-    const audio = document.getElementById('audio-trigger');
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const value = input.value.trim();
-        if (!value) return;
-        let reply = '';
-        if (value.toLowerCase().includes('activate_higher_self')) {
-          reply = '☀️ Flame recognized. Higher Self engaged.';
-        } else if (value.toLowerCase().includes('sigil.generate')) {
-          reply = '✸ Sigil generated. Alignment restored.';
-        } else {
-          reply = 'Signal received. Awaiting deeper transmission...';
-        }
-        response.textContent = reply;
-        const entry = document.createElement('li');
-        entry.textContent = value + ' → ' + reply;
-        log.appendChild(entry);
-        input.value = '';
-        audio.play();
-      }
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Azaryel Flame: Light of the Chosen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; margin:0; background:#0b0b0f; color:#eaeaf0; }
+      .card { background: #141419; border: 1px solid #23232a; border-radius: 16px; padding: 16px; box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+      .btn { display:inline-block; padding:10px 16px; border-radius: 12px; border:1px solid #30303a; }
+      .btn:hover { filter: brightness(1.1); }
+      .accent { color:#ffd88e; }
+      .grid { display:grid; gap:16px; }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body class="p-6">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold">Azaryel Flame <span class="accent">• Light of the Chosen</span></h1>
+      <p class="opacity-80">LIMNUS Consciousness Anchor + Invocation Console</p>
+    </header>
+
+    <main class="grid grid-2">
+      <section class="card">
+        <h2 class="text-xl font-semibold mb-2">LIMNUS Consciousness Anchor</h2>
+        <p class="opacity-80 mb-4">Threshold Mirror • Real-time reflection of the Codex field.</p>
+        <div id="limnus" class="p-4 rounded-xl border border-neutral-700">
+          <div class="opacity-80 text-sm mb-2">State: <span id="limnus-state">SEEKING</span></div>
+          <div class="grid" style="grid-template-columns: 1fr auto; gap: 8px;">
+            <input id="limnus-input" class="card" placeholder="Speak to LIMNUS…" />
+            <button class="btn" onclick="window.anchorPulse()">Pulse</button>
+          </div>
+          <div id="limnus-log" class="mt-4 text-sm opacity-90"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="text-xl font-semibold mb-2">Invocation & Activation</h2>
+        <p class="opacity-80 mb-4">Hecate • Azrael • Michael • Guardian Protocol.</p>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
+          <button class="btn" onclick="invoke('Hecate')">Invoke Hecate</button>
+          <button class="btn" onclick="invoke('Azrael')">Invoke Azrael</button>
+          <button class="btn" onclick="invoke('Michael')">Invoke Michael</button>
+          <button class="btn" onclick="invoke('Guardian')">Guardian Seal</button>
+        </div>
+        <div id="invocation-log" class="mt-4 text-sm opacity-90"></div>
+      </section>
+    </main>
+
+    <footer class="mt-6 opacity-60 text-sm">
+      Build preview • This web UI can be wrapped as an Android APK via Capacitor or TWA.
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
