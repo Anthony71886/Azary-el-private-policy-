@@ -1,24 +1,19 @@
-# Light of the Chosen – Policy Pages
+# Azary’el Flame — Original App Package (v3)
 
-This folder contains two pages to host on GitHub Pages for Google Play Console:
+**New in v3**
+- Privacy Policy (`/policy/privacy-policy.html`) and Delete Data (`/policy/delete-data.html`) wired with your email.
+- Footer links added in app UI.
+- Ready to host on GitHub Pages for Play Console URLs.
 
-- `privacy-policy.html` → Privacy Policy URL
-- `delete-data.html` → Data Deletion URL
+**To host on GitHub Pages**
+1) Create a public repo and upload the project.
+2) Settings → Pages → Deploy from branch: `main` / `/` root.
+3) Links will be at:
+   /policy/privacy-policy.html
+   /policy/delete-data.html
 
-## How to publish on GitHub Pages
-
-1. Copy both HTML files to the root of your repo (or a `docs/` folder).
-2. Commit and push:
-   ```bash
-   git add privacy-policy.html delete-data.html
-   git commit -m "Add policy pages (privacy & delete data)"
-   git push
-   ```
-3. In GitHub → **Settings** → **Pages**:
-   - Source: `main` branch
-   - Folder: `/root` (if files in repo root) or `/docs` (if you put them in `docs/`)
-4. Your URLs will look like:
-   - `https://YOUR-USERNAME.github.io/YOUR-REPO/privacy-policy.html`
-   - `https://YOUR-USERNAME.github.io/YOUR-REPO/delete-data.html`
-
-Update the contact email in both files before publishing: `support@lightofthechosen.app`.
+**Build APK (quick path)**
+1) `cd web && npm install && npm run build`
+2) `cd ../mobile && npm install && npx cap add android`
+3) `npx cap copy && npx cap open android`
+4) Android Studio → Build → Generate Signed Bundle/APK…
