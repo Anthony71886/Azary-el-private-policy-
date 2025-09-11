@@ -1,0 +1,17 @@
+Android APK Build — Quick Path (Pre-wired Capacitor)
+
+1) Install Node.js 18+ and Android Studio.
+2) Build the web app:
+   cd web
+   npm install
+   npm run build    # outputs to web/dist
+3) Initialize Capacitor wrapper (in /mobile):
+   cd ../mobile
+   npm install
+   npx cap add android
+4) Copy web build and open Android Studio:
+   npx cap copy
+   npx cap open android
+5) In Android Studio:
+   Build → Generate Signed Bundle/APK… → APK → create keystore → build.
+6) Upload the release APK/AAB to Google Play Console.
