@@ -1,0 +1,11 @@
+{
+  "name": "light-of-the-chosen",
+  "version": "1.0.0",
+  "description": "Azary’el Flame: Light of the Chosen app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Anthony McClure",
+  "license": "MIT"
+}
